@@ -36,7 +36,7 @@ module TableCloth
       def render_header
         wrapper_tag :thead do
           wrapper_tag :tr do
-            v.raw column_names.inject('') {|tags, name| tags + wrapper_tag(:th, name) }
+            v.raw column_names.inject('') {|tags, name| tags + wrapper_tag(:th, name.is_a?(Proc) ? name.call : name) }
           end
         end
       end
